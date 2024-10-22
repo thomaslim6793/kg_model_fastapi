@@ -1,0 +1,7 @@
+numpy
+pandas
+transformers
+torch
+python-dotenv
+fastapi
+uvicorn[standard]
