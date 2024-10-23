@@ -4,6 +4,8 @@ from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 from fastapi.middleware.cors import CORSMiddleware
 from post_process import post_process_REBEL
 import torch  # Import torch to check for GPU availability
+import os
+
 
 # Define the class model
 class TextRequest(BaseModel):
@@ -13,7 +15,7 @@ class TextRequest(BaseModel):
 app = FastAPI()
 
 # Allow CORS from the frontend
-origins = ["http://localhost:3000"]
+origins = [os.getenv("FRONTEND_ORIGIN", "http://localhost:5175")]
 
 app.add_middleware(
     CORSMiddleware,
