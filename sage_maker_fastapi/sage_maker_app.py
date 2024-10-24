@@ -49,27 +49,10 @@ async def generate_triplets(request: TextRequest):
     )
 
     # Read and decode the response
-    response_body = response['Body'].read().decode()
-
-    # The response body might be a JSON string within a list
-    # Let's parse it appropriately
-
-    # First, try to load the response body as JSON
-    try:
-        # Attempt to parse the response body directly
-        result = json.loads(response_body)
-    except json.JSONDecodeError:
-        # If it's a string within a list, parse accordingly
-        result_list = json.loads(response_body)
-        if isinstance(result_list, list) and len(result_list) > 0:
-            inner_json_str = result_list[0]
-            result = json.loads(inner_json_str)
-        else:
-            # Handle error if the response format is unexpected
-            return {"error": "Unexpected response format from SageMaker endpoint"}
-
-    # Now, 'result' should be a dictionary with a 'triplets' key
-    triplets = result.get('triplets', [])
+    result = json.loads(response['Body'].read().decode())[0]  # Extract the first element, which is the actual result
+    result_dict = json.loads(result)
+    # Extract triplets
+    triplets = result_dict.get('triplets', [])
 
     # Return the triplets to the frontend
     return {"triplets": triplets}
