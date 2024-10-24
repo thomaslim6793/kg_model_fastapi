@@ -7,7 +7,6 @@ import torch  # Import torch to check for GPU availability
 import os
 
 from dotenv import load_dotenv
-import os
 
 
 # Define the class model
