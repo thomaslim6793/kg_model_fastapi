@@ -6,6 +6,9 @@ from post_process import post_process_REBEL
 import torch  # Import torch to check for GPU availability
 import os
 
+from dotenv import load_dotenv
+import os
+
 
 # Define the class model
 class TextRequest(BaseModel):
@@ -15,7 +18,10 @@ class TextRequest(BaseModel):
 app = FastAPI()
 
 # Allow CORS from the frontend
+
+load_dotenv()
 origins = [os.getenv("FRONTEND_ORIGIN", "http://localhost:5175")]
+print("Origins:", origins)
 
 app.add_middleware(
     CORSMiddleware,
