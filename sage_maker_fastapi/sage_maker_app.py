@@ -31,7 +31,7 @@ app.add_middleware(
 sagemaker_client = boto3.client('sagemaker-runtime', region_name='us-east-2')
 
 # Replace with your actual endpoint name
-SAGEMAKER_ENDPOINT = "huggingface-pytorch-inference-2024-10-24-08-57-29-896"
+SAGEMAKER_ENDPOINT = os.getenv("SAGEMAKER_ENDPOINT", "huggingface-pytorch-inference-2024-10-25-17-34-37-438")
 
 @app.post("/generate")
 async def generate_triplets(request: TextRequest):
