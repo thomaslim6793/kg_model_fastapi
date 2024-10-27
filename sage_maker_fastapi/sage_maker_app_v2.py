@@ -9,13 +9,10 @@ from dotenv import load_dotenv
 import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
 
-# Set NLTK data path explicitly
-nltk.data.path.append('/home/ec2-user/nltk_data')
-os.environ["NLTK_DATA"] = "/home/ec2-user/nltk_data"
-
-# Re-download punkt if necessary
 nltk.download('punkt')
 nltk.download('punkt_tab')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
 
 # Define the request model to accept both text and gen_kwargs
 class TextRequest(BaseModel):
