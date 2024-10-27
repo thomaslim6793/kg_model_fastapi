@@ -14,7 +14,7 @@ def predict_fn(input_data, model_tokenizer_device):
     inputs = input_data['inputs']
 
     gen_kwargs = input_data.get('gen_kwargs', {
-        "num_beams": 20,
+        "num_beams": 10,
         "max_length": 256,
         "length_penalty": 1,
         "num_return_sequences": 20
