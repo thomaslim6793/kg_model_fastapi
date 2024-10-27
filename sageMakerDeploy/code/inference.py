@@ -40,7 +40,13 @@ def predict_fn(input_data, model_tokenizer_device):
 
 def input_fn(request_body, request_content_type='application/json'):
     if request_content_type == 'application/json':
-        decoded_body = request_body.decode('utf-8')
+        if isinstance(request_body, bytes):
+            decoded_body = request_body.decode('utf-8')
+        elif isinstance(request_body, str):
+            decoded_body = request_body
+        else:
+            raise ValueError(f"Unsupported request body type: {type(request_body)}")
+        
         return json.loads(decoded_body)
     else:
         raise ValueError(f"Unsupported content type: {request_content_type}")
