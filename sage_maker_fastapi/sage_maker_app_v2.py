@@ -9,8 +9,7 @@ from dotenv import load_dotenv
 import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
 
-# nltk.download('punkt')
-nltk.data.path.append('/home/ec2-user/nltk_data')
+nltk.download('punkt_tab')
 
 # Define the request model to accept both text and gen_kwargs
 class TextRequest(BaseModel):
