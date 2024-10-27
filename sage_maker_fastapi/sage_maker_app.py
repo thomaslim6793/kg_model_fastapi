@@ -16,7 +16,7 @@ app = FastAPI()
 
 # Allow CORS from the frontend
 load_dotenv()
-origins = [os.getenv("FRONTEND_ORIGIN", "http://localhost:5175")]
+origins = [os.getenv("FRONTEND_ORIGIN")]
 print("Origins:", origins)
 
 app.add_middleware(
@@ -31,7 +31,7 @@ app.add_middleware(
 sagemaker_client = boto3.client('sagemaker-runtime', region_name='us-east-2')
 
 # Replace with your actual endpoint name
-SAGEMAKER_ENDPOINT = os.getenv("SAGEMAKER_ENDPOINT", "huggingface-pytorch-inference-2024-10-25-17-34-37-438")
+SAGEMAKER_ENDPOINT = os.getenv("SAGEMAKER_ENDPOINT")
 
 @app.post("/generate")
 async def generate_triplets(request: TextRequest):
