@@ -90,9 +90,9 @@ async def generate_triplets(request: TextRequest):
     sentences = partition_text(input_text, max_words_per_sentence=20)
 
     all_triplets = []
-    batch_size = 2  # Process 2 sentences at a time since the model has a max concurrency of 2
+    batch_size = 5  # Process 5 sentences at a time since the model has a max concurrency of 5
 
-    # Process sentences in batches of 2
+    # Process sentences in batches of batch_size
     for i in range(0, len(sentences), batch_size):
         batch = sentences[i:i + batch_size]
         
