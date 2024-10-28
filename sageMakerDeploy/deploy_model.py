@@ -22,7 +22,7 @@ huggingface_model = HuggingFaceModel(
 # Define serverless inference configuration
 serverless_config = ServerlessInferenceConfig(
     memory_size_in_mb=3072,  # Choose between 1024 and 6144 MB
-    max_concurrency=2        # Maximum number of concurrent invocations
+    max_concurrency=5        # Maximum number of concurrent invocations
 )
 
 # Deploy the model using serverless inference
